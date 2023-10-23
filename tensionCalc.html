@@ -16,6 +16,13 @@
             font-weight: normal;
         }
 
+        h5 {
+            padding: 1px;
+            color: white;
+            font-weight: normal;
+            visibility: hidden
+        }
+
         span {
             color: white;
         }
@@ -59,6 +66,29 @@
             text-align: center;
         }
 
+        .globalOptions1 {
+            width: 6%;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .globalOptions2 {
+            width: 26%;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .globalOptions3 {
+            width: 6%;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .globalOptions4 {
+            align-items: flex-start;
+            text-align: left;
+        }
+
         .string {
             width: 5%;
             align-items: center;
@@ -77,6 +107,13 @@
             width: 10%;
             align-items: center;
             /*background-color: #3D3D3D;*/
+            background-color: black;
+        }
+
+        .scaleDisplay {
+            width: 10%;
+            align-items: center;
+            /*background-color: #212121;*/
             background-color: black;
         }
 
@@ -126,31 +163,84 @@
             setElement("gauge6", "0.00038216");
 
             //set scale to 25.5
-            setElement("scale", "25.5")
+            setElement("scale", "25.5");
+
+            //set number of strings to 6
+            setElement("numberOfStrings", "6");
+            multiString();
 
             //set tuning to E standard
-            setElement("commonTunings", "eStandard")
+            setElement("commonTunings", "eStandard six");
 
             //set strings to 10-46
-            setElement("commonStrings", "10-46")
+            setElement("commonStrings", "10-46 six");
 
-            calculateTension()
+            calculateTension();
+        }
+        function multiString() {
+            let selection = document.getElementById("numberOfStrings");
+            let strings = document.getElementById("commonStrings");
+            let tunings = document.getElementById("commonTunings");
 
+            for(let i = 0; i < strings.options.length; i++){
+                strings[i].style.display = "block";
+                if (strings.options[i].value.split(' ')[1] === "ignore") {
+                }
+                else if (selection.value === "6" && strings.options[i].value.split(' ')[1] !== "six") {
+                    strings[i].style.display = "none";
+                }
+                else if (selection.value === "7" && strings.options[i].value.split(' ')[1] !== "seven") {
+                    strings[i].style.display = "none";
+                }
+                else if (selection.value === "8" && strings.options[i].value.split(' ')[1] !== "eight") {
+                    strings[i].style.display = "none";
+                }
+            }
+
+            for(let i = 0; i < tunings.options.length; i++) {
+                tunings[i].style.display = "block";
+                if (selection.value === "6" && tunings.options[i].value.split(' ')[1] !== "six") {
+                    tunings[i].style.display = "none";
+                } else if (selection.value === "7" && tunings.options[i].value.split(' ')[1] !== "seven") {
+                    tunings[i].style.display = "none";
+                } else if (selection.value === "8" && tunings.options[i].value.split(' ')[1] !== "eight") {
+                    tunings[i].style.display = "none";
+                }
+            }
+
+            if (selection.value === "6") {
+                document.getElementById("row7").style.display = "none";
+                document.getElementById("row8").style.display = "none";
+                setElement("commonStrings", "10-46 six");
+                setElement("commonTunings", "eStandard six");
+            } else if (selection.value === "7") {
+                document.getElementById("row8").style.display = "none";
+                document.getElementById("row7").style.display = "block";
+                setElement("commonStrings", "10-59 seven");
+                setElement("commonTunings", "bStandard seven");
+            } else if (selection.value === "8") {
+                document.getElementById("row7").style.display = "block";
+                document.getElementById("row8").style.display = "block";
+                setElement("commonStrings", "10-74 eight");
+                setElement("commonTunings", "fsStandard eight");
+            } else {
+            }
+            calculateTension();
         }
         function changeTuning() {
             let selection = document.getElementById("commonTunings")
             let tuning = selection.value
             switch (String(tuning)) {
-                case "eStandard":
+                case "eStandard six":
                     setElement("note1", "329.63");
                     setElement("note2", "246.94");
                     setElement("note3", "196");
                     setElement("note4", "146.83");
                     setElement("note5", "110");
                     setElement("note6", "82.41");
-                    calculateTension()
+                    calculateTension();
                     break
-                case "ebStandard":
+                case "ebStandard six":
                     setElement("note1", "311.13");
                     setElement("note2", "233.08");
                     setElement("note3", "185");
@@ -159,7 +249,7 @@
                     setElement("note6", "77.78");
                     calculateTension();
                     break
-                case "dStandard":
+                case "dStandard six":
                     setElement("note1", "293.66");
                     setElement("note2", "220");
                     setElement("note3", "174.61");
@@ -168,7 +258,7 @@
                     setElement("note6", "73.42");
                     calculateTension();
                     break
-                case "dbStandard":
+                case "dbStandard six":
                     setElement("note1", "277.18");
                     setElement("note2", "207.65");
                     setElement("note3", "164.81");
@@ -177,7 +267,7 @@
                     setElement("note6", "69.3");
                     calculateTension();
                     break
-                case "cStandard":
+                case "cStandard six":
                     setElement("note1", "261.63");
                     setElement("note2", "196");
                     setElement("note3", "155.56");
@@ -186,7 +276,7 @@
                     setElement("note6", "65.41");
                     calculateTension();
                     break
-                case "bStandard":
+                case "bStandard six":
                     setElement("note1", "246.94");
                     setElement("note2", "185");
                     setElement("note3", "146.83");
@@ -195,7 +285,7 @@
                     setElement("note6", "61.74");
                     calculateTension();
                     break
-                case "aStandard":
+                case "aStandard six":
                     setElement("note1", "220");
                     setElement("note2", "164.81");
                     setElement("note3", "130.81");
@@ -204,7 +294,7 @@
                     setElement("note6", "55");
                     calculateTension();
                     break
-                case "dropD":
+                case "dropD six":
                     setElement("note1", "329.63");
                     setElement("note2", "246.94");
                     setElement("note3", "196");
@@ -213,7 +303,7 @@
                     setElement("note6", "73.42");
                     calculateTension()
                     break
-                case "dropC":
+                case "dropC six":
                     setElement("note1", "293.66");
                     setElement("note2", "220");
                     setElement("note3", "174.61");
@@ -222,7 +312,7 @@
                     setElement("note6", "65.41");
                     calculateTension();
                     break
-                case "dropB":
+                case "dropB six":
                     setElement("note1", "277.18");
                     setElement("note2", "207.65");
                     setElement("note3", "164.81");
@@ -231,7 +321,7 @@
                     setElement("note6", "61.74");
                     calculateTension();
                     break
-                case "dropA":
+                case "dropA six":
                     setElement("note1", "246.94");
                     setElement("note2", "185");
                     setElement("note3", "146.83");
@@ -240,22 +330,95 @@
                     setElement("note6", "55");
                     calculateTension();
                     break
+                case "bStandard seven":
+                    setElement("note1", "329.63");
+                    setElement("note2", "246.94");
+                    setElement("note3", "196");
+                    setElement("note4", "146.83");
+                    setElement("note5", "110");
+                    setElement("note6", "82.41");
+                    setElement("note7", "61.74");
+                    calculateTension();
+                    break
+                case "aStandard seven":
+                    setElement("note1", "293.66");
+                    setElement("note2", "220");
+                    setElement("note3", "174.61");
+                    setElement("note4", "130.81");
+                    setElement("note5", "98");
+                    setElement("note6", "73.42");
+                    setElement("note7", "55");
+                    calculateTension();
+                    break
+                case "dropA seven":
+                    setElement("note1", "329.63");
+                    setElement("note2", "246.94");
+                    setElement("note3", "196");
+                    setElement("note4", "146.83");
+                    setElement("note5", "110");
+                    setElement("note6", "82.41");
+                    setElement("note7", "55");
+                    calculateTension();
+                    break
+                case "dropG seven":
+                    setElement("note1", "293.66");
+                    setElement("note2", "220");
+                    setElement("note3", "174.61");
+                    setElement("note4", "130.81");
+                    setElement("note5", "98");
+                    setElement("note6", "73.42");
+                    setElement("note7", "49");
+                    calculateTension();
+                    break
+                case "fsStandard eight":
+                    setElement("note1", "329.63");
+                    setElement("note2", "246.94");
+                    setElement("note3", "196");
+                    setElement("note4", "146.83");
+                    setElement("note5", "110");
+                    setElement("note6", "82.41");
+                    setElement("note7", "61.74");
+                    setElement("note8", "46.25");
+                    calculateTension();
+                    break
+                case "fStandard eight":
+                    setElement("note1", "311.13");
+                    setElement("note2", "233.08");
+                    setElement("note3", "185");
+                    setElement("note4", "138.59");
+                    setElement("note5", "103.83");
+                    setElement("note6", "77.78");
+                    setElement("note7", "58.27");
+                    setElement("note8", "43.65");
+                    calculateTension();
+                    break
+                case "dropE eight":
+                    setElement("note1", "329.63");
+                    setElement("note2", "246.94");
+                    setElement("note3", "196");
+                    setElement("note4", "146.83");
+                    setElement("note5", "110");
+                    setElement("note6", "82.41");
+                    setElement("note7", "61.74");
+                    setElement("note8", "41.2");
+                    calculateTension();
+                    break
             }
         }
         function changeStrings() {
-            let selection = document.getElementById("commonStrings")
-            let strings = selection.value
+            let selection = document.getElementById("commonStrings");
+            let strings = selection.value;
             switch (String(strings)) {
-                case "8-38":
+                case "8-38 six":
                     setElement("gauge1", "0.00001418");
                     setElement("gauge2", "0.00002215");
                     setElement("gauge3", "0.00004984");
                     setElement("gauge4", "0.00008293");
                     setElement("gauge5", "0.00017236");
                     setElement("gauge6", "0.00026471");
-                    calculateTension()
+                    calculateTension();
                     break
-                case "9-42":
+                case "9-42 six":
                     setElement("gauge1", "0.00001794");
                     setElement("gauge2", "0.00002680");
                     setElement("gauge3", "0.00005671");
@@ -264,7 +427,7 @@
                     setElement("gauge6", "0.00032279");
                     calculateTension();
                     break
-                case "9-46":
+                case "9-46 six":
                     setElement("gauge1", "0.00001794");
                     setElement("gauge2", "0.00002680");
                     setElement("gauge3", "0.00005671");
@@ -273,338 +436,380 @@
                     setElement("gauge6", "0.00038216");
                     calculateTension();
                     break
-                case "10-46":
+                case "10-46 six":
                     setElement("gauge1", "0.00002215");
                     setElement("gauge2", "0.00003744");
                     setElement("gauge3", "0.00006402");
                     setElement("gauge4", "0.00012671");
                     setElement("gauge5", "0.00023964");
                     setElement("gauge6", "0.00038216");
-                    calculateTension()
+                    calculateTension();
                     break
-                case "11-49":
+                case "11-49 six":
                     setElement("gauge1", "0.00002680");
                     setElement("gauge2", "0.00004342");
                     setElement("gauge3", "0.00007177");
                     setElement("gauge4", "0.00014666");
                     setElement("gauge5", "0.00026471");
                     setElement("gauge6", "0.00043014");
-                    calculateTension()
+                    calculateTension();
                     break
-                case "12-54":
+                case "12-54 six":
                     setElement("gauge1", "0.00003190");
                     setElement("gauge2", "0.00005671");
                     setElement("gauge3", "0.00008861");
                     setElement("gauge4", "0.00019347");
                     setElement("gauge5", "0.00032279");
                     setElement("gauge6", "0.00053838");
-                    calculateTension()
+                    calculateTension();
                     break
-                case "13-62":
+                case "13-62 six":
                     setElement("gauge1", "0.00003744");
                     setElement("gauge2", "0.00006402");
                     setElement("gauge3", "0.00012671");
                     setElement("gauge4", "0.00023964");
                     setElement("gauge5", "0.00038216");
                     setElement("gauge6", "0.00070697");
-                    calculateTension()
+                    calculateTension();
                     break
-                case "14-68":
+                case "14-68 six":
                     setElement("gauge1", "0.00004342");
                     setElement("gauge2", "0.00007177");
                     setElement("gauge3", "0.00012671");
                     setElement("gauge4", "0.00035182");
                     setElement("gauge5", "0.00057598");
                     setElement("gauge6", "0.00084614");
-                    calculateTension()
+                    calculateTension();
                     break
-                case "8-38e":
+                case "8-38e six":
                     setElement("gauge1", "0.00001418");
                     setElement("gauge2", "0.00002680");
                     setElement("gauge3", "0.00004342");
                     setElement("gauge4", "0.00009184");
                     setElement("gauge5", "0.00017236");
                     setElement("gauge6", "0.00026471");
-                    calculateTension()
+                    calculateTension();
                     break
-                case "10-48":
+                case "10-48 six":
                     setElement("gauge1", "0.00002215");
                     setElement("gauge2", "0.00003744");
                     setElement("gauge3", "0.00006402");
                     setElement("gauge4", "0.00014666");
                     setElement("gauge5", "0.00026471");
                     setElement("gauge6", "0.00041382");
-                    calculateTension()
+                    calculateTension();
                     break
-                case "10-52":
+                case "10-52 six":
                     setElement("gauge1", "0.00002215");
                     setElement("gauge2", "0.00003744");
                     setElement("gauge3", "0.00006402");
                     setElement("gauge4", "0.00017236");
                     setElement("gauge5", "0.00032279");
                     setElement("gauge6", "0.00048109");
-                    calculateTension()
+                    calculateTension();
                     break
-                case "11-48":
+                case "11-48 six":
                     setElement("gauge1", "0.00002680");
                     setElement("gauge2", "0.00004342");
                     setElement("gauge3", "0.00007177");
                     setElement("gauge4", "0.00014666");
                     setElement("gauge5", "0.00026471");
                     setElement("gauge6", "0.00041382");
-                    calculateTension()
+                    calculateTension();
                     break
-                case "11-52":
+                case "11-52 six":
                     setElement("gauge1", "0.00002680");
                     setElement("gauge2", "0.00004342");
                     setElement("gauge3", "0.00007177");
                     setElement("gauge4", "0.00017236");
                     setElement("gauge5", "0.00032279");
                     setElement("gauge6", "0.00048109");
-                    calculateTension()
+                    calculateTension();
                     break
-                case "11-54":
+                case "11-54 six":
                     setElement("gauge1", "0.00002680");
                     setElement("gauge2", "0.00004984");
                     setElement("gauge3", "0.00010722");
                     setElement("gauge4", "0.00017236");
                     setElement("gauge5", "0.00032279");
                     setElement("gauge6", "0.00053838");
-                    calculateTension()
+                    calculateTension();
                     break
-                case "12-56":
+                case "12-56 six":
                     setElement("gauge1", "0.00003190");
                     setElement("gauge2", "0.00005671");
                     setElement("gauge3", "0.00010857");
                     setElement("gauge4", "0.00019347");
                     setElement("gauge5", "0.00035182");
                     setElement("gauge6", "0.00057598");
-                    calculateTension()
+                    calculateTension();
                     break
-                case "12-62":
+                case "12-62 six":
                     setElement("gauge1", "0.00003190");
                     setElement("gauge2", "0.00005671");
                     setElement("gauge3", "0.00010857");
                     setElement("gauge4", "0.00021590");
                     setElement("gauge5", "0.00041382");
                     setElement("gauge6", "0.00070697");
-                    calculateTension()
+                    calculateTension();
+                    break
+                case "9-54 seven":
+                    setElement("gauge1", "0.00001794");
+                    setElement("gauge2", "0.00002680");
+                    setElement("gauge3", "0.00005671");
+                    setElement("gauge4", "0.00010857");
+                    setElement("gauge5", "0.00019347");
+                    setElement("gauge6", "0.00032279");
+                    setElement("gauge7", "0.00053838");
+                    calculateTension();
+                    break
+                case "10-59 seven":
+                    setElement("gauge1", "0.00002215");
+                    setElement("gauge2", "0.00003744");
+                    setElement("gauge3", "0.00006402");
+                    setElement("gauge4", "0.00012671");
+                    setElement("gauge5", "0.00023964");
+                    setElement("gauge6", "0.00038216");
+                    setElement("gauge7", "0.00064191");
+                    calculateTension();
+                    break
+                case "9-52 seven":
+                    setElement("gauge1", "0.00001794");
+                    setElement("gauge2", "0.00002680");
+                    setElement("gauge3", "0.00005671");
+                    setElement("gauge4", "0.00010857");
+                    setElement("gauge5", "0.00019347");
+                    setElement("gauge6", "0.00032279");
+                    setElement("gauge7", "0.00048109");
+                    calculateTension();
+                    break
+                case "10-62 seven":
+                    setElement("gauge1", "0.00002215");
+                    setElement("gauge2", "0.00003744");
+                    setElement("gauge3", "0.00006402");
+                    setElement("gauge4", "0.00017236");
+                    setElement("gauge5", "0.00032279");
+                    setElement("gauge6", "0.00048109");
+                    setElement("gauge7", "0.00070697");
+                    calculateTension();
+                    break
+                case "11-58 seven":
+                    setElement("gauge1", "0.00002680");
+                    setElement("gauge2", "0.00004342");
+                    setElement("gauge3", "0.00007177");
+                    setElement("gauge4", "0.00014666");
+                    setElement("gauge5", "0.00026471");
+                    setElement("gauge6", "0.00041382");
+                    setElement("gauge7", "0.00062267");
+                    calculateTension();
+                    break
+                case "9-65 eight":
+                    setElement("gauge1", "0.00001794");
+                    setElement("gauge2", "0.00002680");
+                    setElement("gauge3", "0.00005671");
+                    setElement("gauge4", "0.00010857");
+                    setElement("gauge5", "0.00019347");
+                    setElement("gauge6", "0.00032279");
+                    setElement("gauge7", "0.00053838");
+                    setElement("gauge8", "0.00077437");
+                    calculateTension();
+                    break
+                case "10-74 eight":
+                    setElement("gauge1", "0.00002215");
+                    setElement("gauge2", "0.00003744");
+                    setElement("gauge3", "0.00006402");
+                    setElement("gauge4", "0.00017236");
+                    setElement("gauge5", "0.00032279");
+                    setElement("gauge6", "0.00053838");
+                    setElement("gauge7", "0.00074984");
+                    setElement("gauge8", "0.00098869");
+                    calculateTension();
+                    break
+                case "9-80 eight":
+                    setElement("gauge1", "0.00001794");
+                    setElement("gauge2", "0.00002680");
+                    setElement("gauge3", "0.00005671");
+                    setElement("gauge4", "0.00010857");
+                    setElement("gauge5", "0.00021590");
+                    setElement("gauge6", "0.00038216");
+                    setElement("gauge7", "0.00074984");
+                    setElement("gauge8", "0.00115011");
+                    calculateTension();
+                    break
+                case "10-74e eight":
+                    setElement("gauge1", "0.00002215");
+                    setElement("gauge2", "0.00003744");
+                    setElement("gauge3", "0.00006037");
+                    setElement("gauge4", "0.00010857");
+                    setElement("gauge5", "0.00019347");
+                    setElement("gauge6", "0.00035182");
+                    setElement("gauge7", "0.00062267");
+                    setElement("gauge8", "0.00098869");
+                    calculateTension();
                     break
             }
         }
         function calculateTension() {
-            let scale = parseFloat(document.getElementById("scale").value);
-            let note1 = parseFloat(document.getElementById("note1").value);
-            let note2 = parseFloat(document.getElementById("note2").value);
-            let note3 = parseFloat(document.getElementById("note3").value);
-            let note4 = parseFloat(document.getElementById("note4").value);
-            let note5 = parseFloat(document.getElementById("note5").value);
-            let note6 = parseFloat(document.getElementById("note6").value);
-            let gauge1 = parseFloat(document.getElementById("gauge1").value);
-            let gauge2 = parseFloat(document.getElementById("gauge2").value);
-            let gauge3 = parseFloat(document.getElementById("gauge3").value);
-            let gauge4 = parseFloat(document.getElementById("gauge4").value);
-            let gauge5 = parseFloat(document.getElementById("gauge5").value);
-            let gauge6 = parseFloat(document.getElementById("gauge6").value);
-            let rating1;
-            let rating2;
-            let rating3;
-            let rating4;
-            let rating5;
-            let rating6;
+            let rating;
+            let stringsCount = parseInt(document.getElementById("numberOfStrings").value) + 1;
+            let scale = document.getElementById("scale").value;
             const g = 386.08858;
+            let tensionTotal = 0;
+            let scales = [];
+            let scaleCount = parseInt(document.getElementById("numberOfStrings").value) - 1;
 
-            let x1 = 2 * scale * note1;
-            let y1 = x1 * x1;
-            let num1 = y1 * gauge1;
-            let tension1 = num1 / g;
+            for (let i = 1; i < stringsCount; i++) {
+                let note = parseFloat(document.getElementById(`note${i}`).value);
+                let gauge = parseFloat(document.getElementById(`gauge${i}`).value);
 
-            let x2 = 2 * scale * note2;
-            let y2 = x2 * x2;
-            let num2 = y2 * gauge2;
-            let tension2 = num2 / g;
+                if (scale === "25.5" || scale === "24" || scale === "24.625" || scale === "24.75"
+                    || scale === "26.5" || scale === "27" || scale === "28" || scale === "25") {
+                    scales[i] = scale;
+                    document.getElementById(`scale${i}`).innerHTML = scales[i];
+                }
+                else if (scale === "25.5-25") {
+                    scales[i] = 25 + (i-1) * (0.5 / scaleCount);
+                    document.getElementById(`scale${i}`).innerHTML = scales[i].toFixed(2);
+                }
+                else if (scale === "26.25-25.5") {
+                    scales[i] = 25.5 + (i-1) * (0.75 / scaleCount);
+                    document.getElementById(`scale${i}`).innerHTML = scales[i].toFixed(2);
+                }
+                else if (scale === "27-25.5") {
+                    scales[i] = 25.5 + (i-1) * (2.5 / scaleCount);
+                    document.getElementById(`scale${i}`).innerHTML = scales[i].toFixed(2);
+                }
+                else if (scale === "28-26.5") {
+                    scales[i] = 26.5 + (i-1) * (1.5 / scaleCount);
+                    document.getElementById(`scale${i}`).innerHTML = scales[i].toFixed(2);
+                }
 
-            let x3 = 2 * scale * note3;
-            let y3 = x3 * x3;
-            let num3 = y3 * gauge3;
-            let tension3 = num3 / g;
+                let tension = ((2 * parseFloat(scales[i]) * note) ** 2 * gauge) / g;
+                tensionTotal = tensionTotal + tension;
+                document.getElementById(`result${i}`).innerHTML = tension.toFixed(2);
 
-            let x4 = 2 * scale * note4;
-            let y4 = x4 * x4;
-            let num4 = y4 * gauge4;
-            let tension4 = num4 / g;
-
-            let x5 = 2 * scale * note5;
-            let y5 = x5 * x5;
-            let num5 = y5 * gauge5;
-            let tension5 = num5 / g;
-
-            let x6 = 2 * scale * note6;
-            let y6 = x6 * x6;
-            let num6 = y6 * gauge6;
-            let tension6 = num6 / g;
-
-            if (tension1 < 11) {
-                rating1 = "very loose";
-            } else if (tension1 < 15) {
-                rating1 = "loose";
-            } else if (tension1 < 16) {
-                rating1 = "medium";
-            } else if (tension1 < 18) {
-                rating1 = "tight";
-            } else {
-                rating1 = "very tight";
+                if (tension < 12) {
+                    rating = "very loose";
+                } else if (tension < 15) {
+                    rating = "loose";
+                } else if (tension < 17) {
+                    rating = "medium";
+                } else if (tension < 19) {
+                    rating = "tight";
+                } else {
+                    rating = "very tight";
+                }
+                document.getElementById(`rating${i}`).innerHTML = rating;
             }
-
-            if (tension2 < 11) {
-                rating2 = "very loose";
-            } else if (tension2 < 15) {
-                rating2 = "loose";
-            } else if (tension2 < 16) {
-                rating2 = "medium";
-            } else if (tension2 < 28) {
-                rating2 = "tight";
-            } else {
-                rating2 = "very tight";
-            }
-
-            if (tension3 < 11) {
-                rating3 = "very loose";
-            } else if (tension3 < 15) {
-                rating3 = "loose";
-            } else if (tension3 < 16) {
-                rating3 = "medium";
-            } else if (tension3 < 18) {
-                rating3 = "tight";
-            } else {
-                rating3 = "very tight";
-            }
-
-            if (tension4 < 14) {
-                rating4 = "very loose";
-            } else if (tension4 < 16) {
-                rating4 = "loose";
-            } else if (tension4 < 17) {
-                rating4 = "medium";
-            } else if (tension4 < 20) {
-                rating4 = "tight";
-            } else {
-                rating4 = "very tight";
-            }
-
-            if (tension5 < 14) {
-                rating5 = "very loose";
-            } else if (tension5 < 16) {
-                rating5 = "loose";
-            } else if (tension5 < 17) {
-                rating5 = "medium";
-            } else if (tension5 < 20) {
-                rating5 = "tight";
-            } else {
-                rating5 = "very tight";
-            }
-
-            if (tension6 < 14) {
-                rating6 = "very loose";
-            } else if (tension6 < 16) {
-                rating6 = "loose";
-            } else if (tension6 < 17) {
-                rating6 = "medium";
-            } else if (tension6 < 20) {
-                rating6 = "tight";
-            } else {
-                rating6 = "very tight";
-            }
-
-            let tensionTotal = tension1 + tension2 + tension3 + tension4 + tension5 + tension6;
-
-            document.getElementById("result1").innerHTML = tension1.toFixed(2);
-            document.getElementById("result2").innerHTML = tension2.toFixed(2);
-            document.getElementById("result3").innerHTML = tension3.toFixed(2);
-            document.getElementById("result4").innerHTML = tension4.toFixed(2);
-            document.getElementById("result5").innerHTML = tension5.toFixed(2);
-            document.getElementById("result6").innerHTML = tension6.toFixed(2);
-            document.getElementById("rating1").innerHTML = rating1;
-            document.getElementById("rating2").innerHTML = rating2;
-            document.getElementById("rating3").innerHTML = rating3;
-            document.getElementById("rating4").innerHTML = rating4;
-            document.getElementById("rating5").innerHTML = rating5;
-            document.getElementById("rating6").innerHTML = rating6;
             document.getElementById("resultTotal").innerHTML = tensionTotal.toFixed(2);
         }
     </script>
 </head>
 <body onload = "callDefaults()">
 <!--<h1>Guitar String Tension Calculator</h1>-->
+<div class="row" id="row globalOptions1">
+    <div class="column globalOptions1">
+        <label for="scale">Scale:</label>
+    </div>
+    <div class="column globalOptions2">
+        <select id="scale" name="scale" onchange="calculateTension()" style="width: 296px;" class="center">
+            <option value="24">24"</option>
+            <option value="24.625">24.625"</option>
+            <option value="24.75">24.75"</option>
+            <option value="25">25"</option>
+            <option value="25.5">25.5"</option>
+            <option value="26.5">26.5"</option>
+            <option value="27">27"</option>
+            <option value="28">28"</option>
+            <option value="25.5-25">25.5"-25"</option>
+            <option value="26.25-25.5">26.25"-25.5"</option>
+            <option value="27-25.5">27"-25.5"</option>
+            <option value="28-26.5">28"-26.5"</option>
+        </select>
+    </div>
+    <div class="column globalOptions3">
+        <label for="numberOfStrings">Strings:</label>
+    </div>
+    <div class="column globalOptions4">
+        <select id="numberOfStrings" name="numberOfStrings" onchange="multiString()" class="center" style="width: 200px;">
+            <option value="6">6 Strings</option>
+            <option value="7">7 Strings</option>
+            <option value="8">8 Strings</option>
+        </select>
+    </div>
+</div>
 
-<label for="scale">Scale:</label>
-<select id="scale" name="scale" onchange="calculateTension()">
-    <option value="24">24"</option>
-    <option value="24.625">24.625"</option>
-    <option value="24.75">24.75"</option>
-    <option value="25">25"</option>
-    <option value="25.5">25.5"</option>
-    <option value="26.5">26.5"</option>
-    <option value="27">27"</option>
-    <option value="28">28"</option>
-</select>
+<div class="row" id="row gobalOptions2">
+    <div class="column globalOptions1">
+        <label for="commonStrings">Gauges:</label>
+    </div>
+    <div class="column globalOptions2">
+        <select id="commonStrings" name="commonStrings" class="center" onchange="changeStrings()" style="width: 296px;">
+            <option disabled value="daddario ignore">-------D'Addario XL-------</option>
+            <option value="8-38 six">8p 10p 15p 21w 30w 38w</option>
+            <option value="9-42 six">9p 11p 16p 24w 32w 42w</option>
+            <option value="9-46 six">9p 11p 16p 26w 36w 46w</option>
+            <option value="10-46 six">10p 13p 17p 26w 36w 46w</option>
+            <option value="11-49 six">11p 14p 18p 28w 38w 49w</option>
+            <option value="12-54 six">12p 16p 20p 32w 42w 54w</option>
+            <option value="13-62 six">13p 17p 26w 36w 46w 62w</option>
+            <option value="14-68 six">14p 18p 26w 44w 56w 68w</option>
+            <option value="9-54 seven">9p 11p 16p 24w 32w 42w 54w</option>
+            <option value="10-59 seven">10p 13p 17p 26w 36w 46w 59w</option>
+            <option value="9-65 eight">9p 11p 16p 24w 32w 42w 54w 65w</option>
+            <option value="10-74 eight">10p 13p 17p 30w 42w 54w 64w 74w</option>
+            <option disabled value="ernieball ignore">--------Ernie Ball--------</option>
+            <option value="8-38e six">8p 11p 14p 22w 30w 38w</option>
+            <option value="9-42 six">9p 11p 16p 24w 32w 42w</option>
+            <option value="9-46 six">9p 11p 16p 26w 36w 46w</option>
+            <option value="10-46 six">10p 13p 17p 26w 36w 46w</option>
+            <option value="10-48 six">10p 13p 17p 28w 38w 48w</option>
+            <option value="10-52 six">10p 13p 17p 30w 42w 52w</option>
+            <option value="11-48 six">11p 14p 18p 28w 38w 48w</option>
+            <option value="11-52 six">11p 14p 18p 30w 42w 52w</option>
+            <option value="11-54 six">11p 15p 22p 30w 42w 54w</option>
+            <option value="12-56 six">12p 16p 24w 32w 44w 56w</option>
+            <option value="12-62 six">12p 16p 24w 34w 48w 62w</option>
+            <option value="9-52 seven">9p 11p 16p 24w 32w 42w 52w</option>
+            <option value="10-56 seven">10p 13p 17p 26w 36w 46w 56w</option>
+            <option value="10-62 seven">10p 13p 17p 30w 42w 52w 62w</option>
+            <option value="11-58 seven">11p 14p 18p 28w 38w 48w 58w</option>
+            <option value="9-80 eight">9p 11p 16p 24w 34w 46w 64w 80w</option>
+            <option value="10-74e eight">10p 13p 16.5p 24w 32w 44w 58w 74w</option>
+            <option value="10-74 eight">10p 13p 17p 30w 42w 54w 64w 74w</option>
+        </select>
+    </div>
+    <div class="column globalOptions3">
+        <label for="commonTunings">Tuning:</label>
+    </div>
+    <div class="globalOptions4">
+        <select id="commonTunings" name="commonTunings" onchange="changeTuning()" class="center" style="width: 200px;">
+            <option value="eStandard six">E Standard</option>
+            <option value="ebStandard six">D&#9839; / E&#9837; Standard</option>
+            <option value="dStandard six">D Standard</option>
+            <option value="dbStandard six">C&#9839; / D&#9837; Standard</option>
+            <option value="cStandard six">C Standard</option>
+            <option value="bStandard six">B Standard</option>
+            <option value="aStandard six">A Standard</option>
+            <!--    <option disabled>&#9135;&#9135;&#9135;&#9135;&#9135;&#9135;&#9135;&#9135;&#9135;&#9135;</option>-->
+            <option value="dropD six">Drop D</option>
+            <option value="dropC six">Drop C</option>
+            <option value="dropB six">Drop B</option>
+            <option value="dropA six">Drop A</option>
+            <option value="bStandard seven">B Standard</option>
+            <option value="aStandard seven">A Standard</option>
+            <option value="dropA seven">Drop A</option>
+            <option value="dropG seven">Drop G</option>
+            <option value="fsStandard eight">F&#9839; / G&#9837; Standard</option>
+            <option value="fStandard eight">F Standard</option>
+            <option value="dropE eight">Drop E</option>
+        </select>
+    </div>
+</div>
+<br>
+<hr style="width:750px;margin-left:0">
 
-<label for="commonTunings">Tuning:</label>
-<select id="commonTunings" name="commonTunings" onchange="changeTuning()">
-    <option value="eStandard">E Standard</option>
-    <option value="ebStandard">E&#9837; Standard</option>
-    <option value="dStandard">D Standard</option>
-    <option value="dbStandard">D&#9837; Standard</option>
-    <option value="cStandard">C Standard</option>
-    <option value="bStandard">B Standard</option>
-    <option value="aStandard">A Standard</option>
-    <option disabled>&#9135;&#9135;&#9135;&#9135;&#9135;&#9135;&#9135;&#9135;&#9135;&#9135;</option>
-    <option value="dropD">Drop D</option>
-    <option value="dropC">Drop C</option>
-    <option value="dropB">Drop B</option>
-    <option value="dropA">Drop A</option>
-
-</select>
-
-<label for="commonStrings">Strings:</label>
-<select id="commonStrings" name="commonStrings" class="center" onchange="changeStrings()">
-    <option disabled>-------D'Addario XL-------</option>
-    <option value="8-38">8p 10p 15p 21w 30w 38w</option>
-    <option value="9-42">9p 11p 16p 24w 32w 42w</option>
-    <option value="9-46">9p 11p 16p 26w 36w 46w</option>
-    <option value="10-46">10p 13p 17p 26w 36w 46w</option>
-    <option value="11-49">11p 14p 18p 28w 38w 49w</option>
-    <option value="12-54">12p 16p 20p 32w 42w 54w</option>
-    <option value="13-62">13p 17p 26w 36w 46w 62w</option>
-    <option value="14-68">14p 18p 26w 44w 56w 68w</option>
-    <option disabled>--------Ernie Ball--------</option>
-    <option value="8-38e">8p 11p 14p 22w 30w 38w</option>
-    <option value="9-42">9p 11p 16p 24w 32w 42w</option>
-    <option value="9-46">9p 11p 16p 26w 36w 46w</option>
-    <option value="10-46">10p 13p 17p 26w 36w 46w</option>
-    <option value="10-48">10p 13p 17p 28w 38w 48w</option>
-    <option value="10-52">10p 13p 17p 30w 42w 52w</option>
-    <option value="11-48">11p 14p 18p 28w 38w 48w</option>
-    <option value="11-52">11p 14p 18p 30w 42w 52w</option>
-    <option value="11-54">11p 15p 22p 30w 42w 54w</option>
-    <option value="12-56">12p 16p 24w 32w 44w 56w</option>
-    <option value="12-62">12p 16p 24w 34w 48w 62w</option>
-</select>
-
-<!--<label for="numberOfStrings">Number of Strings:</label>-->
-<!--<select id="numberOfStrings" name="numberOfStrings" onchange="updateDropdownPairs()">-->
-<!--  <option value="-">-</option>-->
-<!--  <option value="6">6 Strings</option>-->
-<!--  <option value="7">7 Strings</option>-->
-<!--  <option value="8">8 Strings</option>-->
-<!--  <option value="9">9 Strings</option>-->
-<!--</select>-->
-<!--<div id="numberOfStringsContainer"></div>-->
-<!--<br><br><br>-->
-
-<br><br>
-
-<div class="row">
+<div class="row" id="row1">
     <div class="column string">
         <h4>String</h4>
         1
@@ -614,7 +819,7 @@
         <label for="note1"></label><select id="note1" onchange="calculateTension()">
         <option value="41.2">&#160&#160&#160&#160&#160E1</option>
         <option value="43.65">&#160&#160&#160&#160&#160F1</option>
-        <option value="46.25">F&#9839;1 / E&#9837;1</option>
+        <option value="46.25">F&#9839;1 / G&#9837;1</option>
         <option value="49">&#160&#160&#160&#160&#160G1</option>
         <option value="51.91">G&#9839;1 / A&#9837;1</option>
         <option value="55">&#160&#160&#160&#160&#160A1</option>
@@ -721,6 +926,10 @@
         <option value="0.00001085">7p</option>
     </select>
     </div>
+    <div class = "column scaleDisplay">
+        <h4>Scale (in)</h4>
+        <span id="scale1"></span>
+    </div>
     <div class = "column tension">
         <h4>Tension (lb)</h4>
         <span id="result1"></span>
@@ -731,7 +940,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" id="row2">
     <div class="column string">
         2
     </div>
@@ -845,6 +1054,9 @@
         <option value="0.00001085">7p</option>
     </select>
     </div>
+    <div class = "column scaleDisplay">
+        <span id="scale2"></span>
+    </div>
     <div class = "column tension">
         <span id="result2"></span>
     </div>
@@ -853,7 +1065,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" id="row3">
     <div class="column string">
         3
     </div>
@@ -967,6 +1179,9 @@
         <option value="0.00001085">7p</option>
     </select>
     </div>
+    <div class = "column scaleDisplay">
+        <span id="scale3"></span>
+    </div>
     <div class = "column tension">
         <span id="result3"></span>
     </div>
@@ -975,7 +1190,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" id="row4">
     <div class="column string">
         4
     </div>
@@ -1089,6 +1304,9 @@
         <option value="0.00001085">7p</option>
     </select>
     </div>
+    <div class = "column scaleDisplay">
+        <span id="scale4"></span>
+    </div>
     <div class = "column tension">
         <span id="result4"></span>
     </div>
@@ -1097,7 +1315,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" id="row5">
     <div class="column string">
         5
     </div>
@@ -1211,6 +1429,9 @@
         <option value="0.00001085">7p</option>
     </select>
     </div>
+    <div class = "column scaleDisplay">
+        <span id="scale5"></span>
+    </div>
     <div class = "column tension">
         <span id="result5"></span>
     </div>
@@ -1219,7 +1440,7 @@
     </div>
 </div>
 
-<div class="row">
+<div class="row" id="row6">
     <div class="column string">
         6
     </div>
@@ -1333,6 +1554,9 @@
         <option value="0.00001085">7p</option>
     </select>
     </div>
+    <div class = "column scaleDisplay">
+        <span id="scale6"></span>
+    </div>
     <div class = "column tension">
         <span id="result6"></span>
     </div>
@@ -1341,20 +1565,284 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="column string"></div>
-    &#160;
-    <div class="column note"></div>
-    &#160;
-    <div class="column gauge"></div>
-    &#160;
-    <div class="column tension"></div>
-    &#160;
+<div class="row" id="row7">
+    <div class="column string">
+        7
+    </div>
+    <div class="column note">
+        <label for="note7"></label><select id="note7" onchange="calculateTension()">
+        <option value="41.2">&#160&#160&#160&#160&#160E1</option>
+        <option value="43.65">&#160&#160&#160&#160&#160F1</option>
+        <option value="46.25">F&#9839;1 / E&#9837;1</option>
+        <option value="49">&#160&#160&#160&#160&#160G1</option>
+        <option value="51.91">G&#9839;1 / A&#9837;1</option>
+        <option value="55">&#160&#160&#160&#160&#160A1</option>
+        <option value="58.27">A&#9839;1 / B&#9837;1</option>
+        <option value="61.74" selected>&#160&#160&#160&#160&#160B1</option>
+        <option value="65.41">&#160&#160&#160&#160&#160C2</option>
+        <option value="69.3">C&#9839;2 / D&#9837;2</option>
+        <option value="73.42">&#160&#160&#160&#160&#160D2</option>
+        <option value="77.78">D&#9839;2 / E&#9837;2</option>
+        <option value="82.41">&#160&#160&#160&#160&#160E2</option>
+        <option value="87.31">&#160&#160&#160&#160&#160F2</option>
+        <option value="92.5">F&#9839;2 / G&#9837;2</option>
+        <option value="98">&#160&#160&#160&#160&#160G2</option>
+        <option value="103.83">G&#9839;2 / A&#9837;2</option>
+        <option value="110">&#160&#160&#160&#160&#160A2</option>
+        <option value="116.54">A&#9839;2 / B&#9837;2</option>
+        <option value="123.47">&#160&#160&#160&#160&#160B2</option>
+        <option value="130.81">&#160&#160&#160&#160&#160C3</option>
+        <option value="138.59">C&#9839;3 / D&#9837;3</option>
+        <option value="146.83">&#160&#160&#160&#160&#160D3</option>
+        <option value="155.56">D&#9839;3 / E&#9837;3</option>
+        <option value="164.81">&#160&#160&#160&#160&#160E3</option>
+        <option value="174.61">&#160&#160&#160&#160&#160F3</option>
+        <option value="185">F&#9839;3 / G&#9837;3</option>
+        <option value="196">&#160&#160&#160&#160&#160G3</option>
+        <option value="207.65">G&#9839;3 / A&#9837;3</option>
+        <option value="220">&#160&#160&#160&#160&#160A3</option>
+        <option value="233.08">A&#9839;3 / B&#9837;3</option>
+        <option value="246.94">&#160&#160&#160&#160&#160B3</option>
+        <option value="261.63">&#160&#160&#160&#160&#160C4</option>
+        <option value="277.18">C&#9839;4 / D&#9837;4</option>
+        <option value="293.66">&#160&#160&#160&#160&#160D4</option>
+        <option value="311.13">D&#9839;4 / E&#9837;4</option>
+        <option value="329.63">&#160&#160&#160&#160&#160E4</option>
+        <option value="349.23">&#160&#160&#160&#160&#160F4</option>
+        <option value="369.99">F&#9839;4 / G&#9837;4</option>
+        <option value="392">&#160&#160&#160&#160&#160G4</option>
+        <option value="415.3">G&#9839;4 / A&#9837;4</option>
+        <option value="440">&#160&#160&#160&#160&#160A4</option>
+    </select>
+    </div>
+    <div class="column gauge">
+        <label for="gauge7"></label><select id="gauge7" onchange="calculateTension()">
+        <option value="0.00115011">80w</option>
+        <option value="0.00098869">74w</option>
+        <option value="0.00094124">72w</option>
+        <option value="0.00089304">70w</option>
+        <option value="0.00084614">68w</option>
+        <option value="0.00079889">66w</option>
+        <option value="0.00077437">65w</option>
+        <option value="0.00074984">64w</option>
+        <option value="0.00070697">62w</option>
+        <option value="0.00066542">60w</option>
+        <option value="0.00064191">59w</option>
+        <option value="0.00062267" selected>58w</option>
+        <option value="0.00057598">56w</option>
+        <option value="0.00053838">54w</option>
+        <option value="0.00048109">52w</option>
+        <option value="0.00044500">50w</option>
+        <option value="0.00043014">49w</option>
+        <option value="0.00041382">48w</option>
+        <option value="0.00038216">46w</option>
+        <option value="0.00035182">44w</option>
+        <option value="0.00032279">42w</option>
+        <option value="0.00027932">39w</option>
+        <option value="0.00026471">38w</option>
+        <option value="0.00025218">37w</option>
+        <option value="0.00023964">36w</option>
+        <option value="0.00021590">34w</option>
+        <option value="0.00019347">32w</option>
+        <option value="0.00017236">30w</option>
+        <option value="0.00014666">28w</option>
+        <option value="0.00012671">26w</option>
+        <option value="0.00010857">24w</option>
+        <option value="0.00009184">22w</option>
+        <option value="0.00008293">21w</option>
+        <option value="0.00007495">20w</option>
+        <option value="0.00006947">19w</option>
+        <option value="0.00006215">18w</option>
+        <option value="0.00005524">17w</option>
+        <option value="0.00014975">26p</option>
+        <option value="0.00012760">24p</option>
+        <option value="0.00010722">22p</option>
+        <option value="0.00008861">20p</option>
+        <option value="0.00007997">19p</option>
+        <option value="0.00007177">18p</option>
+        <option value="0.00006402">17p</option>
+        <option value="0.00006037">16.5p</option>
+        <option value="0.00005671">16p</option>
+        <option value="0.00004984">15p</option>
+        <option value="0.00004342">14p</option>
+        <option value="0.00004037">13.5p</option>
+        <option value="0.00003744">13p</option>
+        <option value="0.00003190">12p</option>
+        <option value="0.00002930">11.5p</option>
+        <option value="0.00002680">11p</option>
+        <option value="0.00002442">10.5p</option>
+        <option value="0.00002215">10p</option>
+        <option value="0.00001999">9.5p</option>
+        <option value="0.00001794">9p</option>
+        <option value="0.00001601">8.5p</option>
+        <option value="0.00001418">8p</option>
+        <option value="0.00001085">7p</option>
+    </select>
+    </div>
+    <div class = "column scaleDisplay">
+        <span id="scale7"></span>
+    </div>
+    <div class = "column tension">
+        <span id="result7"></span>
+    </div>
+    <div class ="column rating">
+        <span id="rating7"></span>
+    </div>
 </div>
+
+<div class="row" id="row8">
+    <div class="column string">
+        8
+    </div>
+    <div class="column note">
+        <label for="note8"></label><select id="note8" onchange="calculateTension()">
+        <option value="41.2">&#160&#160&#160&#160&#160E1</option>
+        <option value="43.65">&#160&#160&#160&#160&#160F1</option>
+        <option value="46.25" selected>F&#9839;1 / E&#9837;1</option>
+        <option value="49">&#160&#160&#160&#160&#160G1</option>
+        <option value="51.91">G&#9839;1 / A&#9837;1</option>
+        <option value="55">&#160&#160&#160&#160&#160A1</option>
+        <option value="58.27">A&#9839;1 / B&#9837;1</option>
+        <option value="61.74">&#160&#160&#160&#160&#160B1</option>
+        <option value="65.41">&#160&#160&#160&#160&#160C2</option>
+        <option value="69.3">C&#9839;2 / D&#9837;2</option>
+        <option value="73.42">&#160&#160&#160&#160&#160D2</option>
+        <option value="77.78">D&#9839;2 / E&#9837;2</option>
+        <option value="82.41">&#160&#160&#160&#160&#160E2</option>
+        <option value="87.31">&#160&#160&#160&#160&#160F2</option>
+        <option value="92.5">F&#9839;2 / G&#9837;2</option>
+        <option value="98">&#160&#160&#160&#160&#160G2</option>
+        <option value="103.83">G&#9839;2 / A&#9837;2</option>
+        <option value="110">&#160&#160&#160&#160&#160A2</option>
+        <option value="116.54">A&#9839;2 / B&#9837;2</option>
+        <option value="123.47">&#160&#160&#160&#160&#160B2</option>
+        <option value="130.81">&#160&#160&#160&#160&#160C3</option>
+        <option value="138.59">C&#9839;3 / D&#9837;3</option>
+        <option value="146.83">&#160&#160&#160&#160&#160D3</option>
+        <option value="155.56">D&#9839;3 / E&#9837;3</option>
+        <option value="164.81">&#160&#160&#160&#160&#160E3</option>
+        <option value="174.61">&#160&#160&#160&#160&#160F3</option>
+        <option value="185">F&#9839;3 / G&#9837;3</option>
+        <option value="196">&#160&#160&#160&#160&#160G3</option>
+        <option value="207.65">G&#9839;3 / A&#9837;3</option>
+        <option value="220">&#160&#160&#160&#160&#160A3</option>
+        <option value="233.08">A&#9839;3 / B&#9837;3</option>
+        <option value="246.94">&#160&#160&#160&#160&#160B3</option>
+        <option value="261.63">&#160&#160&#160&#160&#160C4</option>
+        <option value="277.18">C&#9839;4 / D&#9837;4</option>
+        <option value="293.66">&#160&#160&#160&#160&#160D4</option>
+        <option value="311.13">D&#9839;4 / E&#9837;4</option>
+        <option value="329.63">&#160&#160&#160&#160&#160E4</option>
+        <option value="349.23">&#160&#160&#160&#160&#160F4</option>
+        <option value="369.99">F&#9839;4 / G&#9837;4</option>
+        <option value="392">&#160&#160&#160&#160&#160G4</option>
+        <option value="415.3">G&#9839;4 / A&#9837;4</option>
+        <option value="440">&#160&#160&#160&#160&#160A4</option>
+    </select>
+    </div>
+    <div class="column gauge">
+        <label for="gauge8"></label><select id="gauge8" onchange="calculateTension()">
+        <option value="0.00115011">80w</option>
+        <option value="0.00098869" selected>74w</option>
+        <option value="0.00094124">72w</option>
+        <option value="0.00089304">70w</option>
+        <option value="0.00084614">68w</option>
+        <option value="0.00079889">66w</option>
+        <option value="0.00077437">65w</option>
+        <option value="0.00074984">64w</option>
+        <option value="0.00070697">62w</option>
+        <option value="0.00066542">60w</option>
+        <option value="0.00064191">59w</option>
+        <option value="0.00062267">58w</option>
+        <option value="0.00057598">56w</option>
+        <option value="0.00053838">54w</option>
+        <option value="0.00048109">52w</option>
+        <option value="0.00044500">50w</option>
+        <option value="0.00043014">49w</option>
+        <option value="0.00041382">48w</option>
+        <option value="0.00038216">46w</option>
+        <option value="0.00035182">44w</option>
+        <option value="0.00032279">42w</option>
+        <option value="0.00027932">39w</option>
+        <option value="0.00026471">38w</option>
+        <option value="0.00025218">37w</option>
+        <option value="0.00023964">36w</option>
+        <option value="0.00021590">34w</option>
+        <option value="0.00019347">32w</option>
+        <option value="0.00017236">30w</option>
+        <option value="0.00014666">28w</option>
+        <option value="0.00012671">26w</option>
+        <option value="0.00010857">24w</option>
+        <option value="0.00009184">22w</option>
+        <option value="0.00008293">21w</option>
+        <option value="0.00007495">20w</option>
+        <option value="0.00006947">19w</option>
+        <option value="0.00006215">18w</option>
+        <option value="0.00005524">17w</option>
+        <option value="0.00014975">26p</option>
+        <option value="0.00012760">24p</option>
+        <option value="0.00010722">22p</option>
+        <option value="0.00008861">20p</option>
+        <option value="0.00007997">19p</option>
+        <option value="0.00007177">18p</option>
+        <option value="0.00006402">17p</option>
+        <option value="0.00006037">16.5p</option>
+        <option value="0.00005671">16p</option>
+        <option value="0.00004984">15p</option>
+        <option value="0.00004342">14p</option>
+        <option value="0.00004037">13.5p</option>
+        <option value="0.00003744">13p</option>
+        <option value="0.00003190">12p</option>
+        <option value="0.00002930">11.5p</option>
+        <option value="0.00002680">11p</option>
+        <option value="0.00002442">10.5p</option>
+        <option value="0.00002215">10p</option>
+        <option value="0.00001999">9.5p</option>
+        <option value="0.00001794">9p</option>
+        <option value="0.00001601">8.5p</option>
+        <option value="0.00001418">8p</option>
+        <option value="0.00001085">7p</option>
+    </select>
+    </div>
+    <div class = "column scaleDisplay">
+        <span id="scale8"></span>
+    </div>
+    <div class = "column tension">
+        <span id="result8"></span>
+    </div>
+    <div class ="column rating">
+        <span id="rating8"></span>
+    </div>
+</div>
+
+<br>
+<hr style="width:750px;margin-left:0">
+
+<div class="row" id="row9">
+    <div class="column string">
+        <h5>String</h5>
+    </div>
+    <div class="column note">
+        <h5>Note</h5>
+    </div>
+    <div class="column gauge">
+        <h5>Gauge</h5>
+    </div>
+    <div class = "column scaleDisplay">
+        <h4>Total Tension:</h4>
+    </div>
+    <div class = "column tension">
+        <h4><span id="resultTotal"></span></h4>
+    </div>
+    <div class ="column rating">
+    </div>
+</div>
+
+
 
 <br><br>
 
-Total Tension: <span id="resultTotal"></span>
+
 
 
 </body>
