@@ -3,10 +3,10 @@
 <head>
     <style>
         body {
-            padding: 25px;
+            padding: 0;
             background-color: black;
             color: white;
-            font-size: 20px;
+            font-size: 16px;
             font-family: Arial,sans-serif;
         }
 
@@ -32,7 +32,7 @@
         }
 
         select {
-            font-size: 16px;
+            font-size: 14px;
             font-family: Arial, sans-serif;
             background: transparent;
             color: white;
@@ -67,65 +67,61 @@
         }
 
         .globalOptions1 {
-            width: 6%;
-            align-items: flex-start;
+            width: 70px;
             text-align: left;
         }
 
         .globalOptions2 {
-            width: 26%;
-            align-items: flex-start;
+            width: 300px;
             text-align: left;
         }
 
         .globalOptions3 {
-            width: 6%;
-            align-items: flex-start;
+            width: 70px;
             text-align: left;
         }
 
         .globalOptions4 {
-            align-items: flex-start;
             text-align: left;
         }
 
         .string {
-            width: 5%;
+            width: 60px;
             align-items: center;
             /*background-color: #3D3D3D;*/
             background-color: black;
         }
 
         .note {
-            width: 10%;
+            width: 120px;
             align-items: center;
             /*background-color: #212121;*/
             background-color: black;        ;
         }
 
         .gauge {
-            width: 10%;
+            width: 120px;
             align-items: center;
             /*background-color: #3D3D3D;*/
             background-color: black;
         }
 
         .scaleDisplay {
-            width: 10%;
+            width: 120px;
             align-items: center;
             /*background-color: #212121;*/
             background-color: black;
         }
 
         .tension {
-            width: 10%;
+            width: 120px;
             align-items: center;
             /*background-color: #212121;*/
             background-color: black;
         }
 
         .rating {
-            width: 10%;
+            width: 120px;
             align-items: center;
         }
 
@@ -445,6 +441,24 @@
                     setElement("gauge6", "0.00038216");
                     calculateTension();
                     break
+                case "10-49 six":
+                    setElement("gauge1", "0.00002215");
+                    setElement("gauge2", "0.00004342");
+                    setElement("gauge3", "0.00009184");
+                    setElement("gauge4", "0.00017236");
+                    setElement("gauge5", "0.00026471");
+                    setElement("gauge6", "0.00043014");
+                    calculateTension();
+                    break
+                case "10.5-48 six":
+                    setElement("gauge1", "0.00002442");
+                    setElement("gauge2", "0.00004037");
+                    setElement("gauge3", "0.00007177");
+                    setElement("gauge4", "0.00014666");
+                    setElement("gauge5", "0.00026471");
+                    setElement("gauge6", "0.00041382");
+                    calculateTension();
+                    break
                 case "11-49 six":
                     setElement("gauge1", "0.00002680");
                     setElement("gauge2", "0.00004342");
@@ -454,6 +468,42 @@
                     setElement("gauge6", "0.00043014");
                     calculateTension();
                     break
+                case "11-50 six":
+                    setElement("gauge1", "0.00002680");
+                    setElement("gauge2", "0.00004984");
+                    setElement("gauge3", "0.00007997");
+                    setElement("gauge4", "0.00014666");
+                    setElement("gauge5", "0.00025218");
+                    setElement("gauge6", "0.00044500");
+                    calculateTension();
+                    break
+                case "11-52 six":
+                    setElement("gauge1", "0.00002680");
+                    setElement("gauge2", "0.00004342");
+                    setElement("gauge3", "0.00007177");
+                    setElement("gauge4", "0.00017236");
+                    setElement("gauge5", "0.00032279");
+                    setElement("gauge6", "0.00048109");
+                    calculateTension();
+                    break
+                case "11-56 six":
+                    setElement("gauge1", "0.00002680");
+                    setElement("gauge2", "0.00004342");
+                    setElement("gauge3", "0.00006947");
+                    setElement("gauge4", "0.00019347");
+                    setElement("gauge5", "0.00035182");
+                    setElement("gauge6", "0.00057598");
+                    calculateTension();
+                    break
+                case "12-52 six":
+                    setElement("gauge1", "0.00003190");
+                    setElement("gauge2", "0.00005671");
+                    setElement("gauge3", "0.00010857");
+                    setElement("gauge4", "0.00019347");
+                    setElement("gauge5", "0.00032279");
+                    setElement("gauge6", "0.00048109");
+                    calculateTension();
+                    break
                 case "12-54 six":
                     setElement("gauge1", "0.00003190");
                     setElement("gauge2", "0.00005671");
@@ -461,6 +511,24 @@
                     setElement("gauge4", "0.00019347");
                     setElement("gauge5", "0.00032279");
                     setElement("gauge6", "0.00053838");
+                    calculateTension();
+                    break
+                case "12-60 six":
+                    setElement("gauge1", "0.00003190");
+                    setElement("gauge2", "0.00005671");
+                    setElement("gauge3", "0.00008861");
+                    setElement("gauge4", "0.00021590");
+                    setElement("gauge5", "0.00038216");
+                    setElement("gauge6", "0.00066542");
+                    calculateTension();
+                    break
+                case "13-56 six":
+                    setElement("gauge1", "0.00003744");
+                    setElement("gauge2", "0.00006402");
+                    setElement("gauge3", "0.00012671");
+                    setElement("gauge4", "0.00023964");
+                    setElement("gauge5", "0.00038216");
+                    setElement("gauge6", "0.00057598");
                     calculateTension();
                     break
                 case "13-62 six":
@@ -490,6 +558,42 @@
                     setElement("gauge6", "0.00026471");
                     calculateTension();
                     break
+                case "8-40 six":
+                    setElement("gauge1", "0.00001418");
+                    setElement("gauge2", "0.00002680");
+                    setElement("gauge3", "0.00004342");
+                    setElement("gauge4", "0.00010857");
+                    setElement("gauge5", "0.00019347");
+                    setElement("gauge6", "0.00032279");
+                    calculateTension();
+                    break
+                case "8.5-40 six":
+                    setElement("gauge1", "0.00001601");
+                    setElement("gauge2", "0.00002680");
+                    setElement("gauge3", "0.00004984");
+                    setElement("gauge4", "0.00009184");
+                    setElement("gauge5", "0.00017236");
+                    setElement("gauge6", "0.00032279");
+                    calculateTension();
+                    break
+                case "9.5-44 six":
+                    setElement("gauge1", "0.00001999");
+                    setElement("gauge2", "0.00003190");
+                    setElement("gauge3", "0.00005671");
+                    setElement("gauge4", "0.00010857");
+                    setElement("gauge5", "0.00021590");
+                    setElement("gauge6", "0.00035182");
+                    calculateTension();
+                    break
+                case "9.5-46 six":
+                    setElement("gauge1", "0.00001999");
+                    setElement("gauge2", "0.00003190");
+                    setElement("gauge3", "0.00005671");
+                    setElement("gauge4", "0.00012671");
+                    setElement("gauge5", "0.00023964");
+                    setElement("gauge6", "0.00038216");
+                    calculateTension();
+                    break
                 case "10-48 six":
                     setElement("gauge1", "0.00002215");
                     setElement("gauge2", "0.00003744");
@@ -517,10 +621,37 @@
                     setElement("gauge6", "0.00041382");
                     calculateTension();
                     break
-                case "11-52 six":
-                    setElement("gauge1", "0.00002680");
-                    setElement("gauge2", "0.00004342");
-                    setElement("gauge3", "0.00007177");
+                case "10-52e six":
+                    setElement("gauge1", "0.00002215");
+                    setElement("gauge2", "0.00003744");
+                    setElement("gauge3", "0.00006402");
+                    setElement("gauge4", "0.00017236");
+                    setElement("gauge5", "0.00032279");
+                    setElement("gauge6", "0.00048109");
+                    calculateTension();
+                    break
+                case "10-54 six":
+                    setElement("gauge1", "0.00002215");
+                    setElement("gauge2", "0.00003744");
+                    setElement("gauge3", "0.00006402");
+                    setElement("gauge4", "0.00019347");
+                    setElement("gauge5", "0.00035182");
+                    setElement("gauge6", "0.00053838");
+                    calculateTension();
+                    break
+                case "10.5-48e six":
+                    setElement("gauge1", "0.00002442");
+                    setElement("gauge2", "0.00004037");
+                    setElement("gauge3", "0.00006790");
+                    setElement("gauge4", "0.00014666");
+                    setElement("gauge5", "0.00026471");
+                    setElement("gauge6", "0.00041382");
+                    calculateTension();
+                    break
+                case "10.5-52 six":
+                    setElement("gauge1", "0.00002442");
+                    setElement("gauge2", "0.00004037");
+                    setElement("gauge3", "0.00006790");
                     setElement("gauge4", "0.00017236");
                     setElement("gauge5", "0.00032279");
                     setElement("gauge6", "0.00048109");
@@ -544,6 +675,15 @@
                     setElement("gauge6", "0.00057598");
                     calculateTension();
                     break
+                case "12-56e2 six":
+                    setElement("gauge1", "0.00003190");
+                    setElement("gauge2", "0.00005671");
+                    setElement("gauge3", "0.00009184");
+                    setElement("gauge4", "0.00019347");
+                    setElement("gauge5", "0.00035182");
+                    setElement("gauge6", "0.00057598");
+                    calculateTension();
+                    break
                 case "12-62 six":
                     setElement("gauge1", "0.00003190");
                     setElement("gauge2", "0.00005671");
@@ -551,6 +691,15 @@
                     setElement("gauge4", "0.00021590");
                     setElement("gauge5", "0.00041382");
                     setElement("gauge6", "0.00070697");
+                    calculateTension();
+                    break
+                case "13-72 six":
+                    setElement("gauge1", "0.00003744");
+                    setElement("gauge2", "0.00007177");
+                    setElement("gauge3", "0.00017236");
+                    setElement("gauge4", "0.00035182");
+                    setElement("gauge5", "0.00057598");
+                    setElement("gauge6", "0.00094124");
                     calculateTension();
                     break
                 case "9-54 seven":
@@ -676,7 +825,7 @@
                     document.getElementById(`scale${i}`).innerHTML = scales[i].toFixed(2);
                 }
                 else if (scale === "27-25.5") {
-                    scales[i] = 25.5 + (i-1) * (2.5 / scaleCount);
+                    scales[i] = 25.5 + (i-1) * (1.5 / scaleCount);
                     document.getElementById(`scale${i}`).innerHTML = scales[i].toFixed(2);
                 }
                 else if (scale === "28-26.5") {
@@ -728,7 +877,7 @@
         </select>
     </div>
     <div class="column globalOptions3">
-        <label for="numberOfStrings">Strings:</label>
+        <label for="numberOfStrings">&#160;&#160;Strings:</label>
     </div>
     <div class="column globalOptions4">
         <select id="numberOfStrings" name="numberOfStrings" onchange="multiString()" class="center" style="width: 200px;">
@@ -750,26 +899,44 @@
             <option value="9-42 six">9p 11p 16p 24w 32w 42w</option>
             <option value="9-46 six">9p 11p 16p 26w 36w 46w</option>
             <option value="10-46 six">10p 13p 17p 26w 36w 46w</option>
+            <option value="10-49 six">10p 14p 22w 30w 38w 49w</option>
+            <option value="10.5-48 six">10.5p 13.5p 18p 28w 38w 48w</option>
             <option value="11-49 six">11p 14p 18p 28w 38w 49w</option>
+            <option value="11-50 six">11p 15p 19p 28w 37w 50w</option>
+            <option value="11-52 six">11p 14p 18p 30w 42w 52w</option>
+            <option value="11-56 six">11p 14p 19p 32w 44w 56w</option>
+            <option value="12-52 six">12p 16p 24w 32w 42w 52w</option>
             <option value="12-54 six">12p 16p 20p 32w 42w 54w</option>
+            <option value="12-60 six">12p 16p 20p 34w 46w 60w</option>
+            <option value="13-56 six">13p 17p 26w 36w 46w 56w</option>
             <option value="13-62 six">13p 17p 26w 36w 46w 62w</option>
             <option value="14-68 six">14p 18p 26w 44w 56w 68w</option>
             <option value="9-54 seven">9p 11p 16p 24w 32w 42w 54w</option>
             <option value="10-59 seven">10p 13p 17p 26w 36w 46w 59w</option>
             <option value="9-65 eight">9p 11p 16p 24w 32w 42w 54w 65w</option>
             <option value="10-74 eight">10p 13p 17p 30w 42w 54w 64w 74w</option>
-            <option disabled value="ernieball ignore">--------Ernie Ball--------</option>
+            <option disabled value="ernieball ignore">---------Ernie Ball---------</option>
             <option value="8-38e six">8p 11p 14p 22w 30w 38w</option>
+            <option value="8-40 six">8p 11p 14p 24w 32w 42w</option>
+            <option value="8.5-40 six">8.5p 11p 15p 22w 30w 40w</option>
             <option value="9-42 six">9p 11p 16p 24w 32w 42w</option>
             <option value="9-46 six">9p 11p 16p 26w 36w 46w</option>
+            <option value="9.5-44 six">9.5p 12p 16p 24w 34w 44w</option>
+            <option value="9.5-46 six">9.5p 12p 16p 26w 36w 46w</option>
             <option value="10-46 six">10p 13p 17p 26w 36w 46w</option>
             <option value="10-48 six">10p 13p 17p 28w 38w 48w</option>
-            <option value="10-52 six">10p 13p 17p 30w 42w 52w</option>
+            <option value="10-52e six">10p 13p 17p 30w 42w 52w</option>
+            <option value="10-54 six">10p 13p 17p 32w 44w 54w</option>
+            <option value="10.5-48e six">10.5p 13.5p 17.5p 28w 38w 48w</option>
+            <option value="10.5-52 six">10.5p 13.5p 17.5p 30w 42w 52w</option>
             <option value="11-48 six">11p 14p 18p 28w 38w 48w</option>
             <option value="11-52 six">11p 14p 18p 30w 42w 52w</option>
             <option value="11-54 six">11p 15p 22p 30w 42w 54w</option>
             <option value="12-56 six">12p 16p 24w 32w 44w 56w</option>
+            <option value="12-56e2 six">12p 16p 22w 32w 44w 56w</option>
             <option value="12-62 six">12p 16p 24w 34w 48w 62w</option>
+            <option value="13-72 six">13p 18p 30w 44w 56w 72w</option>
+<!--                          7 and 8 string options                    -->
             <option value="9-52 seven">9p 11p 16p 24w 32w 42w 52w</option>
             <option value="10-56 seven">10p 13p 17p 26w 36w 46w 56w</option>
             <option value="10-62 seven">10p 13p 17p 30w 42w 52w 62w</option>
@@ -780,7 +947,7 @@
         </select>
     </div>
     <div class="column globalOptions3">
-        <label for="commonTunings">Tuning:</label>
+        <label for="commonTunings">&#160;&#160;Tuning:</label>
     </div>
     <div class="globalOptions4">
         <select id="commonTunings" name="commonTunings" onchange="changeTuning()" class="center" style="width: 200px;">
@@ -807,7 +974,7 @@
     </div>
 </div>
 <br>
-<hr style="width:750px;margin-left:0">
+<hr style="width:660px;margin-left:0">
 
 <div class="row" id="row1">
     <div class="column string">
@@ -907,6 +1074,7 @@
         <option value="0.00008861">20p</option>
         <option value="0.00007997">19p</option>
         <option value="0.00007177">18p</option>
+        <option value="0.00006790">17.5p</option>
         <option value="0.00006402">17p</option>
         <option value="0.00006037">16.5p</option>
         <option value="0.00005671">16p</option>
@@ -1035,6 +1203,7 @@
         <option value="0.00008861">20p</option>
         <option value="0.00007997">19p</option>
         <option value="0.00007177">18p</option>
+        <option value="0.00006790">17.5p</option>
         <option value="0.00006402">17p</option>
         <option value="0.00006037">16.5p</option>
         <option value="0.00005671">16p</option>
@@ -1160,6 +1329,7 @@
         <option value="0.00008861">20p</option>
         <option value="0.00007997">19p</option>
         <option value="0.00007177">18p</option>
+        <option value="0.00006790">17.5p</option>
         <option value="0.00006402">17p</option>
         <option value="0.00006037">16.5p</option>
         <option value="0.00005671">16p</option>
@@ -1285,6 +1455,7 @@
         <option value="0.00008861">20p</option>
         <option value="0.00007997">19p</option>
         <option value="0.00007177">18p</option>
+        <option value="0.00006790">17.5p</option>
         <option value="0.00006402">17p</option>
         <option value="0.00006037">16.5p</option>
         <option value="0.00005671">16p</option>
@@ -1410,6 +1581,7 @@
         <option value="0.00008861">20p</option>
         <option value="0.00007997">19p</option>
         <option value="0.00007177">18p</option>
+        <option value="0.00006790">17.5p</option>
         <option value="0.00006402">17p</option>
         <option value="0.00006037">16.5p</option>
         <option value="0.00005671">16p</option>
@@ -1528,6 +1700,7 @@
         <option value="0.00007495">20w</option>
         <option value="0.00006947">19w</option>
         <option value="0.00006215">18w</option>
+        <option value="0.00006790">17.5p</option>
         <option value="0.00005524">17w</option>
         <option value="0.00014975">26p</option>
         <option value="0.00012760">24p</option>
@@ -1653,6 +1826,7 @@
         <option value="0.00007495">20w</option>
         <option value="0.00006947">19w</option>
         <option value="0.00006215">18w</option>
+        <option value="0.00006790">17.5p</option>
         <option value="0.00005524">17w</option>
         <option value="0.00014975">26p</option>
         <option value="0.00012760">24p</option>
@@ -1785,6 +1959,7 @@
         <option value="0.00008861">20p</option>
         <option value="0.00007997">19p</option>
         <option value="0.00007177">18p</option>
+        <option value="0.00006790">17.5p</option>
         <option value="0.00006402">17p</option>
         <option value="0.00006037">16.5p</option>
         <option value="0.00005671">16p</option>
@@ -1816,7 +1991,7 @@
 </div>
 
 <br>
-<hr style="width:750px;margin-left:0">
+<hr style="width:660px;margin-left:0">
 
 <div class="row" id="row9">
     <div class="column string">
